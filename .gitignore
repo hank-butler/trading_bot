@@ -1,0 +1,22 @@
+
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Hardhat cache and artifacts
+cache/
+artifacts/
+
+# Environment files
+.env
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Other specific files/directories to ignore
+# ...
