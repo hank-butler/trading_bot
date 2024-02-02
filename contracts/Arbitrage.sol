@@ -6,3 +6,6 @@ import "@balancer-labs/v2-interfaces/contracts/vault/IVault.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 
+contract Arbitrage is IFlashLoanRecipient {
+    // bare bones of arbitrage contract
+}
