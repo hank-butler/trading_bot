@@ -7,12 +7,14 @@ import "@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 
 contract Arbitrage is IFlashLoanRecipient {
-    // bare bones of arbitrage contract
+    IVault private constant vault = IVault(); // what is this?
 
-    // So we're goign to build an arb bot.
+    IUniswapV2Router02 public immutable sRouter;
+    IUniswapV2Router02 public immutable uRouter;
+    address public owner;
 
-    // Going to need to take in different token prices from different dex's
-
-    // Provide liquidity
-    // and then do swaps
+    constructor(address _sRouter, address _uRouter) {
+        // Add routers for uniswap, sushiswap
+        owner = msg.sender; // person calling contract
+    }
 }
