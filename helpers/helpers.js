@@ -24,11 +24,9 @@ async function getTokenAndContract(_token0Address, _token1Address, _provider){
 
     return {token0Contract, token1Contract, token0, token1}
 
+}
 
-
-
-
-
-
-
+async function getPairAddress(_V2Factory, _token0, _token1){
+    const pairAddress =  await  _V2Factory.getPair(_token0, _token1)
+    return pairAddress;  
 }
