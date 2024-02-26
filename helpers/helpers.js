@@ -30,3 +30,9 @@ async function getPairAddress(_V2Factory, _token0, _token1){
     const pairAddress =  await  _V2Factory.getPair(_token0, _token1)
     return pairAddress;  
 }
+
+async function getPairContract(_V2Factory, _token0, _token1, _provider){
+    const pairAddress = await getPairAddress(_V2Factory, _token0, _token1)
+    const pairContract = new ethers.Contract(pairAddress, IUniswapV2Pair.abi, _provider)
+    return pairContract
+}
