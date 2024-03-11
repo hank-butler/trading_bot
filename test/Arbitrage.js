@@ -19,4 +19,12 @@ describe('Arbitrage', () => {
 
         await arbitrage.waitForDeployment()
     })
+
+    describe('Deployment', () => {
+        it('Sets the sRouter', async () => {
+            expect(await arbitrage.sRouter()).to.equal(config.SUSHISWAP.V2_ROUTER_O2_ADDRESS)
+        })
+
+        
+    })
 })
