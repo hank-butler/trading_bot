@@ -25,6 +25,14 @@ describe('Arbitrage', () => {
             expect(await arbitrage.sRouter()).to.equal(config.SUSHISWAP.V2_ROUTER_O2_ADDRESS)
         })
 
-        
+        it("Sets the uRouter", async () => {
+            expect(await arbitrage.uRouter()).to.equal(config.UNISWAP.V2_ROUTER_O2_ADDRESS)
+        })
+
+        it("Sets the owner", async () => {
+            expect(await arbitrage.owner()).to.equal(await owner.getAddress())
+        })
+
+
     })
 })
