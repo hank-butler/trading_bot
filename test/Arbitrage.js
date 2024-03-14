@@ -35,4 +35,8 @@ describe('Arbitrage', () => {
 
 
     })
+
+    describe("Trading", () => {
+        // build out logic once we know what/how to trade.
+    })
 })
