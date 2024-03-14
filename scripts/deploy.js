@@ -6,21 +6,23 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
+const config = requre("../config.json")
+
 async function main() {
-  const NAME = 'Dapp University'
-  const SYMBOL = 'DAPP'
-  const MAX_SUPPLY = '1000000'
+  const arbitrage = await hre.ethers.deployContract(
+    "Arbitrage",
+    [
+      config.SUSHISWAP.V2_ROUTER_02_ADDRESS,
+      config.UNISWAP.V2_ROUTER_02_ADDRESS
+    ]
+  )
 
-  // Deploy Token
-  const Token = await hre.ethers.getContractFactory('Token')
-  let token = await Token.deploy(NAME, SYMBOL, MAX_SUPPLY)
+  await arbitrage.waitForDeployment()
 
-  await token.deployed()
-  console.log(`Token deployed to: ${token.address}\n`)
+  console.log(`Arbitrage contract deployed at: ${await arbitrage.getAddress()}`)
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// similar to try-except block in Python
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
