@@ -28,6 +28,14 @@ contract Arbitrage is IFlashLoanRecipient {
         uint256 _flashAmount
     ) external {
         bytes memory data = abi.encode(_startOnUniswap, _token0, _token1);
+
+        IER20[] memory tokens = new IERC20[](1);
+        tokens[0] = IERC20(_token0);
+
+        uint256[] memory amounts = new uint256[](1);
+        amounts[0] = _flashAmount;
+
+        valut.flashLoan(this, tokens, amounts, data);
     }
 
 }
