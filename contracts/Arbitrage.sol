@@ -38,4 +38,11 @@ contract Arbitrage is IFlashLoanRecipient {
         valut.flashLoan(this, tokens, amounts, data);
     }
 
+    function receiveFlashLoan(
+
+    )
+    external override {
+        
+    }
+
 }
