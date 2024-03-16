@@ -42,7 +42,14 @@ contract Arbitrage is IFlashLoanRecipient {
 
     )
     external override {
-        
+        require(msg.sender == address(vault));
+
+        uint256 flashAmount = amounts[0]; //indexing into first element of amounts array
+
+        (bool startOnUniswap, address token0, address token1) = abi.decode(
+            userData,
+            (bool, address, address)
+        );
     }
 
 }
