@@ -50,6 +50,24 @@ contract Arbitrage is IFlashLoanRecipient {
             userData,
             (bool, address, address)
         );
+
+        address[] memory path = new address[](2);
+
+        path[0] = token0;
+        path[1] = token1;
+
+        if (startOnUniswap) {
+            _swapOnUniswap(path, flashAmount, 0);
+
+            path[0] = token1;
+            path[1] = token0;
+
+            _swapOnSushiSwap(
+                path,
+                IERC20(token1).balanceOf(address(this)),
+                flashAmount // 
+            );
+        } else 
     }
 
 }
