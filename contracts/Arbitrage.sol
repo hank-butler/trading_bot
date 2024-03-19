@@ -67,7 +67,24 @@ contract Arbitrage is IFlashLoanRecipient {
                 IERC20(token1).balanceOf(address(this)),
                 flashAmount // 
             );
-        } else 
+        } else {
+            _swapOnSushiSwap(path, flashAmount, 0);
+
+            path[0] = token1;
+            path[1] = token0;
+
+            _swapOnUniswap(
+                path,
+                IERC20(token1).balanceOf(address(this)),
+                flashAmount
+            );
+        }
+
+        IERC20(token0).transfer(address(vault), flashAmount);
+
+        IERC20(token0).transfer(owner, IERC20(token0).balanceOf(address(this)));
     }
+
+    
 
 }
