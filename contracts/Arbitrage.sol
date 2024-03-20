@@ -85,6 +85,16 @@ contract Arbitrage is IFlashLoanRecipient {
         IERC20(token0).transfer(owner, IERC20(token0).balanceOf(address(this)));
     }
 
-    
+    // 
+
+    function _swapOnUniswap(
+        address[] memory _path,
+        uint256 _amountIn,
+        uint256 _amountOut
+    ) internal {
+        require(
+            IERC20(_path[0]).approve(address )
+        )
+    }
 
 }
