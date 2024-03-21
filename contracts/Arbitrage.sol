@@ -93,8 +93,19 @@ contract Arbitrage is IFlashLoanRecipient {
         uint256 _amountOut
     ) internal {
         require(
-            IERC20(_path[0]).approve(address )
-        )
+            IERC20(_path[0]).approve(address(uRotuer), _amountIn),
+            "Uniswap Approval Failed"
+        );
+
+        uRouter.swapExactTokensForTokens(
+            _amountIn,
+            _amountOut,
+            _path,
+            address(this),
+            (block.timestamp + 1200)
+        );
     }
+
+    
 
 }
