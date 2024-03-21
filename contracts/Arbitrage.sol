@@ -106,6 +106,24 @@ contract Arbitrage is IFlashLoanRecipient {
         );
     }
 
-    
+    function _swapOnSushiSwap(
+        address[] memory _path,
+        uint256 _amountIn,
+        uint256 _amountOut
+    ) internal {
+        require(
+            IERCO(_path[0]).approve(address(sRouter), _amountIn),
+            "Sushiswap approval failed."
+        );
+        sRouter.swapExactTokensForTokens(
+            _amountIn,
+            _amountOut,
+            _path,
+            address(this),
+            (block.timestamp + 1200)
+        );
+    }
+
+
 
 }
