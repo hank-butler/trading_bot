@@ -25,6 +25,13 @@ async function main() {
 
     await manipulatePrice([ARB_AGAINST, ARB_FOR], token0Contract)
 
-    co
+    const priceAfter = await calculatePrice(pair)
+
+    const data = {
+        'Price before': `1 WETH = ${Number(priceBefore).toFixed(0)} SHIB`,
+        'Price After': `1 WEth = ${Number(priceAfter).toFixed(0)} SHIB`,
+    }
+
+    console.table(data)
 
 }
