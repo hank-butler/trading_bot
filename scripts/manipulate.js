@@ -35,3 +35,7 @@ async function main() {
     console.table(data)
 
 }
+
+async function manipulatePrice(_path, _token0Contract){
+    
+}
