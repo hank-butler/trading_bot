@@ -37,5 +37,11 @@ async function main() {
 }
 
 async function manipulatePrice(_path, _token0Contract){
-    
+    console.log(`\n Now this is swapping!\n`)
+
+    console.log(`Input token : ${_path[0].symbol}`)
+    console.log(`Input token : ${_path[1].symbol}\n`)
+
+    const amount = hre.ethers.parseUnits(AMOUNT, 'ether')
+    const path = [_path[0].address, _path[1].address];
 }
