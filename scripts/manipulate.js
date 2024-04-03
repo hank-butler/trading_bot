@@ -44,4 +44,5 @@ async function manipulatePrice(_path, _token0Contract){
 
     const amount = hre.ethers.parseUnits(AMOUNT, 'ether')
     const path = [_path[0].address, _path[1].address];
+    const deadline = Math.floor(Date.now() / 1000) + 60 * 30 // 30 minutes
 }
