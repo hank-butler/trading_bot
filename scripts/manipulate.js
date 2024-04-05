@@ -48,6 +48,10 @@ async function manipulatePrice(_path, _token0Contract){
 
     await hre.network.provider.request({
         method: "hardhat_impersonateAccount",
-        params: [UNLOCKED_AMOUNT],
+        params: [UNLOCKED_ACCOUNT],
     })
+
+    const signer = await hre.ethers.getSigner(UNLOCKED_ACCOUNT)
+
+    const approval =     
 }
