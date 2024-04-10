@@ -53,5 +53,16 @@ async function manipulatePrice(_path, _token0Contract){
 
     const signer = await hre.ethers.getSigner(UNLOCKED_ACCOUNT)
 
-    const approval =     
+    const approval = await _token0Contract.connect(signer).approve(await V2_ROUTER_TO_USE.get_address(), amount, { gasLimit: 5000})   
+    await approval.wait()
+    
+    const swap = await V2_ROUTER_TO_USE.connect(signer).swapExactTokensForToken(amount, 0, path, signer.address, deadline, {gasLimit: 10000})
+    await swap.wait()
+
+    console.log(`Swap complete! Great success!\n`)
 }
+
+main().catch((error)=> {
+    console.error(error);
+    process.exitCode = 1;
+});
