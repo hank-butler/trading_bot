@@ -25,5 +25,14 @@ const main = async () => {
     console.log(`uPair address: ${await uPair.getAddress()}`)
     console.log(`sPair address: ${await sPair.getAddress()}`)
 
+    uPair.on('Swap', async () => {
+        if (!isExecuting) {
+            isExecuting = true
+
+            const priceDifference = await checkPrice('Uniswap', token0, token1)
+            const routerPath = await determineDirection(priceDifference)
+        }
+    })
+
     
 }
