@@ -31,8 +31,30 @@ const main = async () => {
 
             const priceDifference = await checkPrice('Uniswap', token0, token1)
             const routerPath = await determineDirection(priceDifference)
+
+            if (!routerPath) {
+                console.log('No Arb available')
+                console.log('='.repeat(30))
+                isExecuting = false
+                return
+            }
+
+            const isProfitable = awiat determineProfitability(routerPath, token0contract, token0, token1)
+
+            if (!isProfitable) {
+                console.log(`no arg available`)
+                console.log('='.repeat(30))
+                isExecuting = false
+                return
+            }
+
+            const receipt = await executeTrade(routerPath, token0contract, token1contract)
+
+            isExecuting = false
         }
     })
+
+    
 
     
 }
