@@ -32,6 +32,13 @@ const main = async () => {
 
             const priceDifference = await checkPrice('Uniswap', token0, token1)
             const routerPath = await determineDirection(priceDifference)
+
+            if (!routerPath) {
+                console.log(`No Arb opportunities`)
+                console.log('='.repeat(30))
+            }
+
+            const isProfitable = await determineProtifability(routerPath, token0Contract, token0, token1)
         }
     }
 }
