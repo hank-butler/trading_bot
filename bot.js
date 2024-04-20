@@ -54,7 +54,37 @@ const main = async () => {
         }
     })
 
-    
+    sPair.on('Swap', async () => {
+        if (!isExecuting) {
+            isExecuting = true
+
+            const priceDifference = await checkPrice('Sushiswap', token0, token1)
+            const routerPath = await determineDirection(priceDifference)
+
+            if (!routerPath){
+                console.log('No arb opportunities')
+                console.log('='.repeat(30))
+                isExecuting = false
+                return
+            }
+
+            const isProfitable = await determineProfitability(routerPath, token0Contract, token0, token1)
+
+            if (!isProfitable){
+                console.log('No arb opportunities')
+                console.log('='.repeat(30))
+                isExecuting = false
+                return
+            }
+
+            const receipt = await executeTrade(routerPath, token0contract, token1contract)
+
+            isExecuting = false
+
+        }
+    })
+
+    console.log('Waiting for swap opportunity')
 
     
 }
