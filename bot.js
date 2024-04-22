@@ -88,3 +88,20 @@ const main = async () => {
 
     
 }
+
+const checkPrice = async (_exchange, _token0, _token1) => {
+    isExecuting = true
+
+    console.log(`Swap initiated on ${_exchange}, Checking Price`)
+
+    const currentBlock = await provider.getBlockNumber()
+
+    const uPrice = await calculatePrice(uPair)
+    const sPrice = await calculatePrice(sPair)
+
+    const uFPrice = Number(uPrice).toFixed(uints)
+    const sFPrice = Number(sPrice).toFixed(uints)
+    const priceDifference = (((uFPrice - sFPrice) / sFPrice) * 100).toFixed(2)
+
+    return priceDifference
+}
