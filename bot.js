@@ -105,3 +105,7 @@ const checkPrice = async (_exchange, _token0, _token1) => {
 
     return priceDifference
 }
+
+const determineDirection = async (_priceDifference) => {
+    if (_priceDifference >= difference)
+}
