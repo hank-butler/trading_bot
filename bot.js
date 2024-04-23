@@ -107,5 +107,13 @@ const checkPrice = async (_exchange, _token0, _token1) => {
 }
 
 const determineDirection = async (_priceDifference) => {
-    if (_priceDifference >= difference)
+    if (_priceDifference >= difference) {
+        return [uRouter, sRouter]
+    } else if (_priceDifference <= -(difference)) {
+        return [sRouter, uRouter]
+    } else {
+        return null
+    }
 }
+
+const 
