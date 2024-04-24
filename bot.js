@@ -116,4 +116,14 @@ const determineDirection = async (_priceDifference) => {
     }
 }
 
-const 
+const determineProfitability = async (_routerPath, _token0Contract, _token0, _token1) => {
+    let exchangeToBuy, exchangeToSell
+
+    if (await _routerPath[0].getAddress() === await uRouter.getAddress()) {
+        exchangeToBuy = 'Uniswap'
+        exchangeToSell = 'Sushiswap'
+    } else {
+        exchangeToBuy = 'Sushiswap'
+        exchangeToSell = 'Uniswap'
+    }
+}
