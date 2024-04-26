@@ -127,3 +127,14 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
         exchangeToSell = 'Uniswap'
     }
 }
+
+ const uReserves = await getReserves(uPair)
+ const sResevers = await getReserves(sPair)
+
+ let minAmount
+
+ if (uReserves[0] > sReserves[0]) {
+    minAmount = BigInt(sReserves[0]) / BigInt(2)
+ } else {
+    minAmount = BigInt(uReserves[0]) / BigInt(2)
+ }
