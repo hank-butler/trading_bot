@@ -138,3 +138,7 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
  } else {
     minAmount = BigInt(uReserves[0]) / BigInt(2)
  }
+
+ try {
+    const estimate = await _routerPath[0].getAmountsIn(minAmount, [])
+ }
