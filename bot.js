@@ -143,4 +143,6 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     const estimate = await _routerPath[0].getAmountsIn(minAmount, [_token0.address, _token1.address])
 
     const result = await _routerPath[1].getAmountsIn(estimate[1], [_token1.address, _token0.address])
+
+    const { amountIn, amountOut } = await simulate(estimate[0], _routerPath, _token0, _token1)
  }
