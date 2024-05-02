@@ -145,4 +145,8 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     const result = await _routerPath[1].getAmountsIn(estimate[1], [_token1.address, _token0.address])
 
     const { amountIn, amountOut } = await simulate(estimate[0], _routerPath, _token0, _token1)
+
+    const amountDifference = amountOut - amountIn
+
+    const estimatedGas = gasLimit * gasPrice
  }
