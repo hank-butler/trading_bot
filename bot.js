@@ -149,4 +149,9 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     const amountDifference = amountOut - amountIn
 
     const estimatedGas = gasLimit * gasPrice
+
+    // Account variable
+    const account = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
+
+    const ethBalanceBefore =  
  }
