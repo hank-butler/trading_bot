@@ -148,10 +148,37 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
 
     const amountDifference = amountOut - amountIn
 
-    const estimatedGas = gasLimit * gasPrice
+    const estimatedGasCost = gasLimit * gasPrice
 
     // Account variable
     const account = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 
-    const ethBalanceBefore =  
+    const ethBalanceBefore = ethers.formatUnits(await _token0Contract.balanceOf(account.address), 'ether')
+    const ethBalanceAfter = ethBalanceBefore - estimatedGas
+
+    const wethBalanceBefore = Number(ethers.formatUnits(await _token0Contract.balanceOf(account.address, 'ether')))
+    const wethBalanceAfter = amountDifference + wethBalanceBefore
+    const wethBalanceDifference = wethBalanceAfter - wethBalanceBefore
+
+    const data = {
+        'ETH Balance Before': ethBalanceBefore,
+        'ETH Balance After': ethBalanceAfter,
+        'ETH Spent (gas)': estimatedGasCost,
+        'WETH Balance Before': wethBalanceBefore,
+        'WETH Balance After': wethBalanceAfter,
+        'WETH Gained/Lost': wethBalanceDifference,
+        'Total +/-': wethBalanceDifference - estimatedGasCost
+    }
+
+    console.table(data)
+    console.log()
+
+    if (Number(amountOut) < Number(amountIn)) {
+        return false
+    }
+    amount = ethers.parseUnits(amountIn, 'ether')
+    return turn
+ } catch(error){
+    console.log(error)
+    return false
  }
