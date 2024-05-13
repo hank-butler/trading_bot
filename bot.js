@@ -183,4 +183,19 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     return false
  }
 
- const executeTrade = async (_routerPath, )
+ const executeTrade = async (_routerPath, _token0Contract, _token1Contract) => {
+    let startOnUniswap
+
+    if (await _routerPath[0].getAddress() == await uRouter.getAddress()) {
+        startOnUniswap = true
+    } else {
+        startOnUniswap = false
+    }
+
+    const account = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
+
+    const tokenBalanceBefore = await _token0Contract.balanceOf(account.address)
+    const ethBalanceBefore = await provider.getBalance(account.address)
+
+    
+ }
