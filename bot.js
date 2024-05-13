@@ -182,3 +182,5 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     console.log(error)
     return false
  }
+
+ const executeTrade = async (_routerPath, )
