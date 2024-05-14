@@ -39,7 +39,7 @@ const main = async () => {
                 return
             }
 
-            const isProfitable = awiat determineProfitability(routerPath, token0contract, token0, token1)
+            const isProfitable = await determineProfitability(routerPath, token0contract, token0, token1)
 
             if (!isProfitable) {
                 console.log(`no arg available`)
