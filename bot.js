@@ -197,5 +197,22 @@ const determineProfitability = async (_routerPath, _token0Contract, _token0, _to
     const tokenBalanceBefore = await _token0Contract.balanceOf(account.address)
     const ethBalanceBefore = await provider.getBalance(account.address)
 
-    
+    const tokenBalanceDifference = tokenBalanceAfter - tokenBalanceBefore
+    const ethBalanceDifference = ethBalanceBefore - ethBalanceAfter
+
+    const data = {
+        'ETH Balance Before': ethers.formatUnits(ethBalanceBefore, 'ether'),
+    'ETH Balance After': ethers.formatUnits(ethBalanceAfter, 'ether'),
+    'ETH Spent (gas)': ethers.formatUnits(ethBalanceDifference.toString(), 'ether'),
+    '-': {},
+    'WETH Balance BEFORE': ethers.formatUnits(tokenBalanceBefore, 'ether'),
+    'WETH Balance AFTER': ethers.formatUnits(tokenBalanceAfter, 'ether'),
+    'WETH Gained/Lost': ethers.formatUnits(tokenBalanceDifference.toString(), 'ether'),
+    '-': {},
+    'Total Gained/Lost': `${ethers.formatUnits((tokenBalanceDifference - ethBalanceDifference).toString(), 'ether')} ETH`
+    }
+
+    console.table(data)
  }
+
+ main()
